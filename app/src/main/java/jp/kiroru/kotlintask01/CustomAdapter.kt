@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.kotlintask01.CustomGlide
 import kotlinx.android.synthetic.main.cell_main.view.*
 
 class CustomAdapter(private val context: Context, private val items: List<Item>, private val listener: ItemSelectionListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -23,7 +23,8 @@ class CustomAdapter(private val context: Context, private val items: List<Item>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        Glide.with(context)
+        CustomGlide
+            .with(context)
             .load(item.imageUrl)
             .into(holder.imageView)
         holder.jnameView.text = item.jname

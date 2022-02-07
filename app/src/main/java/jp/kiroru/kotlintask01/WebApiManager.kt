@@ -51,7 +51,9 @@ object WebApiManager {
 
         override fun onResponse(call: Call<List<T>>, response: Response<List<T>>) {
             if (response.isSuccessful) {
-                listener.completed(response.body()!!)
+                response.body()?.let {
+                    listener.completed(it)
+                }
             } else {
                 listener.error(ERROR_RESPONSE, "応答エラー： code=" + response.code())
             }
@@ -68,8 +70,10 @@ object WebApiManager {
     //
     fun getCountries(listener: Listener<List<CountryEntity>>) {
         Log.d(TAG, "=== getCountries ===")
-        val call = api!!.getCountries()
-        call.enqueue(MyCallback(listener))
+        api?.let {
+            val call = it.getCountries()
+            call.enqueue(MyCallback(listener))
+        }
     }
 
     interface Listener<T> {

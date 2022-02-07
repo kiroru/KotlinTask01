@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface WebApi {
     @GET("/share/scc2018/countries.json")
-    fun getCountries() : Call<List<CountryEntity>>
+    fun getCountries(): Call<List<CountryEntity>>
 }

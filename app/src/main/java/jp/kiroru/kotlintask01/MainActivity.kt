@@ -18,20 +18,20 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
 
     private val webApiManagerListener = object : WebApiManager.Listener<List<CountryEntity>> {
 
-                                            override fun completed(entities: List<CountryEntity>) {
-                                                items.clear()
-                                                for (entity in entities) {
-                                                    Log.d(TAG, "$entity")
-                                                    items.add(Item(entity.imageUrl, entity.jname, entity.ename))
-                                                }
-                                                adapter?.notifyDataSetChanged()
-                                            }
+        override fun completed(entities: List<CountryEntity>) {
+            items.clear()
+            for (entity in entities) {
+                Log.d(TAG, "$entity")
+                items.add(Item(entity.imageUrl, entity.jname, entity.ename))
+            }
+            adapter?.notifyDataSetChanged()
+        }
 
-                                            override fun error(code: Int, description: String) {
-                                                Log.d(TAG, "code : $code description : $description")
-                                            }
+        override fun error(code: Int, description: String) {
+            Log.d(TAG, "code : $code description : $description")
+        }
 
-                                        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

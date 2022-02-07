@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.cell_main.view.*
 
-class CustomAdapter(private val context: Context, private val items: List<Item>, private val listener: ItemSelectionListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(
+    private val context: Context,
+    private val items: List<Item>,
+    private val listener: ItemSelectionListener
+) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_main, parent, false)
@@ -30,7 +34,7 @@ class CustomAdapter(private val context: Context, private val items: List<Item>,
         holder.enameView.text = item.ename
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView = view.imageView
         val jnameView = view.jNameView
         val enameView = view.eNameView

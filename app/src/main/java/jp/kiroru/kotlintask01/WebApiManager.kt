@@ -43,7 +43,7 @@ object WebApiManager {
     }
 
     //
-    // Callback 受信時の処理を共通化し、Listener に変換する。
+    // Callback 受信時の処理を共通化する
     //
     private class MyCallback<T>(private val listener: Listener<List<T>>) : Callback<List<T>> {
 
@@ -64,7 +64,7 @@ object WebApiManager {
     }
 
     //
-    // こんな感じで Listener を引数に返すメソッドを追加していくと良い。
+    // こんな感じで Listener を引数にとるメソッドを追加していくと良い。
     //
     fun getCountries(listener: Listener<List<CountryEntity>>) {
         Log.d(TAG, "=== getCountries ===")

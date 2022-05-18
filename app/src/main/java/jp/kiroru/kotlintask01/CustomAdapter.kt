@@ -34,6 +34,11 @@ class CustomAdapter(
         holder.enameView.text = item.ename
     }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        Glide.with(context).clear(holder.imageView)
+    }
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView = view.imageView
         val jnameView = view.jNameView

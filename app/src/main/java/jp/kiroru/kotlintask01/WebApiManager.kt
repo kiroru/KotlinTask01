@@ -16,7 +16,7 @@ object WebApiManager {
 
     private val BASEURL = "https://kiroru-inc.jp"
     private val FAILURE = 990
-    private val ERROR_RESPONSE = 991
+    private val HTTP_ERROR = 991
 
     private var api: WebApi? = null
 
@@ -53,7 +53,7 @@ object WebApiManager {
                     listener.completed(it)
                 }
             } else {
-                listener.error(ERROR_RESPONSE, "応答エラー： code=" + response.code())
+                listener.error(HTTP_ERROR, "応答エラー： code=" + response.code())
             }
         }
 

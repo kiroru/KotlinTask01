@@ -14,7 +14,7 @@ object WebApiManager {
 
     private val TAG = WebApiManager::class.java.simpleName
 
-    private val BASEURL = "https://kiroru-inc.jp"
+    private val BASEURL = "https://api.github.com/"
     private val FAILURE = 990
     private val HTTP_ERROR = 991
 
@@ -66,11 +66,11 @@ object WebApiManager {
     //
     // こんな感じで Listener を引数にとるメソッドを追加していくと良い。
     //
-    fun getCountries(listener: Listener<List<CountryEntity>>) {
-        Log.d(TAG, "=== getCountries ===")
-        api?.let {
-            val call = it.getCountries()
-            call.enqueue(MyCallback(listener))
+    fun getGitHubUsers(listner: Listener<List<GitHubUserEntity>>) {
+        Log.d(TAG, "=== getGitHubUsers ===")
+        api?.let{
+            val call = it.getGitHubUsers()
+            call.enqueue(MyCallback(listner))
         }
     }
 

@@ -30,8 +30,8 @@ class CustomAdapter(
         Glide.with(context)
             .load(item.imageUrl)
             .into(holder.imageView)
-        holder.jnameView.text = item.jname
-        holder.enameView.text = item.ename
+        holder.jnameView.text = item.name
+        holder.enameView.text = item.htmlUrl
     }
 
     override fun onViewRecycled(holder: ViewHolder) {
@@ -41,8 +41,8 @@ class CustomAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView = view.imageView
-        val jnameView = view.jNameView
-        val enameView = view.eNameView
+        val jnameView = view.nameView
+        val enameView = view.htmlUrlView
     }
 
 

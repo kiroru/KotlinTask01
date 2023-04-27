@@ -4,6 +4,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface WebApi {
-    @GET("/share/scc2018/countries.json")
-    fun getCountries(): Call<List<CountryEntity>>
+    @GET("/users")
+    fun getGitHubUsers(): Call<List<GitHubUserEntity>>
 }

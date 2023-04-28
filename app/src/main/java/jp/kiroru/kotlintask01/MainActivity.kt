@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-data class Item(val imageUrl: String, val jname: String, val ename: String)
+data class Item(val imageUrl: String, val name: String, val htmlUrl: String)
 
 class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
 
@@ -16,13 +16,13 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
     private val items = mutableListOf<Item>()
     private var adapter: CustomAdapter? = null
 
-    private val webApiManagerListener = object : WebApiManager.Listener<List<CountryEntity>> {
+    private val webApiManagerListener = object : WebApiManager.Listener<List<GitHubUserEntity>> {
 
-        override fun completed(entities: List<CountryEntity>) {
+        override fun completed(entities: List<GitHubUserEntity>) {
             items.clear()
             for (entity in entities) {
                 Log.d(TAG, "$entity")
-                items.add(Item(entity.imageUrl, entity.jname, entity.ename))
+                items.add(Item(entity.avatar_url, entity.login, entity.html_url))
             }
             adapter?.notifyDataSetChanged()
         }
@@ -50,14 +50,14 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
         // サーバーにリクエストする。
         //
         try {
-            WebApiManager.getCountries(webApiManagerListener)
+            WebApiManager.getGitHubUsers(webApiManagerListener)
         } catch (e: Exception) {
             Log.e(TAG, "エラー： " + e.localizedMessage)
         }
     }
 
     override fun notifyItemSelected(item: Item) {
-        Toast.makeText(this, "${item.jname} が選択されました。", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${item.name} が選択されました。", Toast.LENGTH_SHORT).show()
     }
 
 }

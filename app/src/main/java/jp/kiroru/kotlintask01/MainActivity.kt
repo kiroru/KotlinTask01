@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import jp.kiroru.kotlintask01.databinding.ActivityMainBinding
 
 
 data class Item(val imageUrl: String, val name: String, val htmlUrl: String)
@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
     private val TAG = MainActivity::class.java.simpleName
     private val items = mutableListOf<Item>()
     private var adapter: CustomAdapter? = null
+    private lateinit var binding: ActivityMainBinding
 
     private val webApiManagerListener = object : WebApiManager.Listener<List<GitHubUserEntity>> {
 
@@ -35,12 +36,13 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val view = findViewById<RecyclerView>(R.id.recyclerView)
-        view.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = CustomAdapter(this, items, this)
-        view.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         setup()
     }

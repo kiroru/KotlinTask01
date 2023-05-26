@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object WebApiManager {
 
-    private val tag = WebApiManager::class.java.simpleName
+    private val TAG = WebApiManager::class.java.simpleName
 
     private const val BASEURL = "https://api.github.com/"
     private const val FAILURE = 990
@@ -67,7 +67,7 @@ object WebApiManager {
     // こんな感じで Listener を引数にとるメソッドを追加していくと良い。
     //
     fun getGitHubUsers(listener: Listener<List<GitHubUserEntity>>) {
-        Log.d(tag, "=== getGitHubUsers ===")
+        Log.d(TAG, "=== getGitHubUsers ===")
         api?.let{
             val call = it.getGitHubUsers()
             call.enqueue(MyCallback(listener))

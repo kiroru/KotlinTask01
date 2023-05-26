@@ -12,7 +12,10 @@ data class Item(val imageUrl: String, val name: String, val htmlUrl: String)
 
 class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
 
-    private val tag = MainActivity::class.java.simpleName
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+    }
+
     private val items = mutableListOf<Item>()
     private var adapter: CustomAdapter? = null
     private lateinit var binding: ActivityMainBinding
@@ -22,14 +25,14 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
         override fun completed(entities: List<GitHubUserEntity>) {
             items.clear()
             for (entity in entities) {
-                Log.d(tag, "$entity")
+                Log.d(TAG, "$entity")
                 items.add(Item(entity.avatar_url, entity.login, entity.html_url))
             }
             adapter?.notifyDataSetChanged()
         }
 
         override fun error(code: Int, description: String) {
-            Log.d(tag, "code : $code description : $description")
+            Log.d(TAG, "code : $code description : $description")
         }
 
     }
@@ -54,7 +57,7 @@ class MainActivity : AppCompatActivity(), CustomAdapter.ItemSelectionListener {
         try {
             WebApiManager.getGitHubUsers(webApiManagerListener)
         } catch (e: Exception) {
-            Log.e(tag, "エラー： " + e.localizedMessage)
+            Log.e(TAG, "エラー： " + e.localizedMessage)
         }
     }
 

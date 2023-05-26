@@ -2,11 +2,10 @@ package jp.kiroru.kotlintask01
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.cell_main.view.*
+import jp.kiroru.kotlintask01.databinding.CellMainBinding
 
 class CustomAdapter(
     private val context: Context,
@@ -15,9 +14,13 @@ class CustomAdapter(
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_main, parent, false)
-        return ViewHolder(view).apply {
-            view.setOnClickListener {
+        val binding = CellMainBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ViewHolder(binding).apply {
+            binding.root.setOnClickListener {
                 listener.notifyItemSelected(items[adapterPosition])
             }
         }
@@ -39,10 +42,10 @@ class CustomAdapter(
         Glide.with(context).clear(holder.imageView)
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView = view.imageView
-        val nameView = view.nameView
-        val htmlUrlView = view.htmlUrlView
+    class ViewHolder(binding: CellMainBinding) : RecyclerView.ViewHolder(binding.root) {
+        val imageView = binding.imageView
+        val nameView = binding.nameView
+        val htmlUrlView = binding.htmlUrlView
     }
 
 
